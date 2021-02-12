@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
@@ -12,7 +14,8 @@ import javax.persistence.Version;
 public class Author implements Serializable {
     
     @Id
-    private Long authorId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     @Version
     private int version;
@@ -23,12 +26,12 @@ public class Author implements Serializable {
     @Column
     private String lastName;
     
-    public void setAuthorId(final Long authorId) {
-        this.authorId = authorId;
+    public void setId(final Long id) {
+        this.id = id;
     }
     
-    public Long getAuthorId() {
-        return authorId;
+    public Long getId() {
+        return id;
     }
     
     public int getVersion() {

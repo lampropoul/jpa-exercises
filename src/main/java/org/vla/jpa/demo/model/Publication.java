@@ -2,18 +2,27 @@ package org.vla.jpa.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Publication implements Serializable {
     
     @Id
@@ -30,6 +39,12 @@ public class Publication implements Serializable {
     
     @Column
     private String title;
+    
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "publication_authors",
+               joinColumns = @JoinColumn(name = "fk_publication_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "fk_author_id", referencedColumnName = "id"))
+    private Set<Author> authors = new HashSet<>();
     
     public void setId(final Long id) {
         this.id = id;
@@ -61,6 +76,14 @@ public class Publication implements Serializable {
     
     public void setTitle(final String title) {
         this.title = title;
+    }
+    
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+    
+    public void setAuthors(final Set<Author> authors) {
+        this.authors = authors;
     }
     
     @Override

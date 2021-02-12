@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
+import org.vla.jpa.demo.model.Author;
 import org.vla.jpa.demo.model.Book;
 import org.vla.jpa.demo.repository.BookRepository;
 
@@ -23,6 +24,13 @@ public class DataInit {
         book.setTitle("JPA with Hibernate and Spring");
         book.setPublishingDate(new Date());
         book.setPages(300);
+    
+        Author author = new Author();
+        author.setFirstName("William");
+        author.setLastName("Lambda");
+    
+        book.getAuthors().add(author);
+    
         bookRepository.save(book);
     }
     
