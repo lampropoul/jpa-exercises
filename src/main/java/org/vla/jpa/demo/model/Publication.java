@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @MappedSuperclass
-public class Publication implements Serializable {
+public abstract class Publication implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
