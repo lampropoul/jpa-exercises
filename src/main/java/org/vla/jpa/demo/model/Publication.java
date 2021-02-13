@@ -23,7 +23,7 @@ import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Publication implements Serializable {
+public abstract class Publication implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
