@@ -4,10 +4,12 @@ import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 @AttributeOverride(name = "id", column = @Column(name = "book_id"))
+@DiscriminatorValue(value = "BOOK")
 public class Book extends Publication {
     
     @Column
