@@ -25,7 +25,7 @@ import javax.persistence.Version;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "publication_type")
-public class Publication implements Serializable {
+public abstract class Publication implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
