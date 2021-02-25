@@ -1,0 +1,1 @@
+# JPA Inheritance exercises
